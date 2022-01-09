@@ -119,7 +119,6 @@ export default defineComponent({
         theme="dark"
         mode="inline"
         inlineIndent={20}
-        inlineCollapsed={menuCollapsed.value}
         openKeys={openKeys.value}
         selectedKeys={selectKeys.value}
         onOpenChange={onOpenChange}
