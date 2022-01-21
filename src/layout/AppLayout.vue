@@ -1,7 +1,7 @@
 <template>
   <Layout class="AppLayout">
     <SiderMenu />
-    <Layout>
+    <Layout style="height: 100pv; overflow: auto">
       <HeaderBar />
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in" appear>

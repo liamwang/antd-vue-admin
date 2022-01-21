@@ -1,7 +1,11 @@
 <template>
   <header id="app-Header">
     <div class="left">
-      <MenuUnfoldOutlined v-if="collapsed" class="action" @click="toggleCollapsed" />
+      <MenuUnfoldOutlined
+        v-if="collapsed"
+        class="action"
+        @click="toggleCollapsed"
+      />
       <MenuFoldOutlined v-else class="action" @click="toggleCollapsed" />
       <Breadcrumb />
     </div>
@@ -42,14 +46,14 @@ export default defineComponent({
 })
 </script>
 
-
 <style lang="less">
 #app-Header {
   position: relative;
   display: flex;
   justify-content: space-between;
   height: @header-height;
-  padding: 0;
+  line-height: @header-height;
+  padding: 0 5px 0 0;
   background: #fff;
   border-bottom: 1px solid #eee;
   padding-right: 5px;
