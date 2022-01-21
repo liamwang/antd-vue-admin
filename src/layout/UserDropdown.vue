@@ -2,17 +2,13 @@
   <Dropdown placement="bottomLeft" overlayClassName="UserDropdown-overlay">
     <span class="action UserDropdown-trigger">
       <img class="avatar" :src="userInfo.avatar || defaultAvatar" />
-      <span>{{userInfo.displayName}}</span>
+      <span>{{ userInfo.displayName }}</span>
     </span>
     <template #overlay>
       <Menu>
-        <MenuItem>
-        <KeyOutlined /><span>修改密码</span>
-        </MenuItem>
+        <MenuItem> <KeyOutlined /><span>修改密码</span> </MenuItem>
         <MenuDivider />
-        <MenuItem>
-        <PoweroffOutlined /><span>退出系统</span>
-        </MenuItem>
+        <MenuItem> <PoweroffOutlined /><span>退出系统</span> </MenuItem>
       </Menu>
     </template>
   </Dropdown>
@@ -55,7 +51,7 @@ export default defineComponent({
 }
 .UserDropdown-overlay {
   min-width: 142px;
-  .ant-dropdown-menu-item {
+  .ant-dropdown-menu-title-content {
     display: flex;
     align-items: center;
   }
