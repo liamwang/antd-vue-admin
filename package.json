@@ -23,6 +23,7 @@
     "@vitejs/plugin-vue": "^2.2.0",
     "@vitejs/plugin-vue-jsx": "^1.3.4",
     "@vue/compiler-sfc": "^3.2.30",
+    "consola": "^2.15.3",
     "less": "^4.1.2",
     "mockjs": "^1.1.0",
     "typescript": "^4.5.5",

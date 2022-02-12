@@ -876,6 +876,11 @@ connect@^3.7.0:
     parseurl "~1.3.3"
     utils-merge "1.0.1"
 
+consola@^2.15.3:
+  version "2.15.3"
+  resolved "https://registry.npmmirror.com/consola/-/consola-2.15.3.tgz#2e11f98d6a4be71ff72e0bdf07bd23e12cb61550"
+  integrity sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==
+
 console@^0.7.2:
   version "0.7.2"
   resolved "https://registry.npmmirror.com/Console/-/Console-0.7.2.tgz#f9a4331249291591b7bf9bffa8e205356f20a9f0"

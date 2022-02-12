@@ -3,7 +3,7 @@ import { Menu, Layout } from 'ant-design-vue'
 import type { MenuTheme } from 'ant-design-vue'
 import { useRouter } from 'vue-router'
 import menu from '@/config/menu'
-import Logo from './Logo'
+import Logo from './Logo.vue'
 
 interface SiderMenuProps {
   theme: MenuTheme
