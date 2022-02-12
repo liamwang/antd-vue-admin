@@ -1,47 +1,27 @@
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { Layout } from 'ant-design-vue'
+import SiderMenu from './SiderMenu2'
+
+const menuCollapsed = ref(false)
+</script>
+
 <template>
   <Layout class="AppLayout">
-    <SiderMenu />
-    <Layout style="height: 100pv; overflow: auto">
-      <HeaderBar />
-      <router-view v-slot="{ Component }">
+    <SiderMenu theme="dark" :collapsed="menuCollapsed" />
+    <Layout>
+      <Layout.Header />
+      <RouterView v-slot="{ Component, route }">
         <transition name="fade" mode="out-in" appear>
-          <component :is="Component" />
+          <component :is="Component" :key="route.fullPath" />
         </transition>
-      </router-view>
+      </RouterView>
     </Layout>
   </Layout>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { Layout } from 'ant-design-vue'
-import HeaderBar from './HeaderBar.vue'
-import SiderMenu from './SiderMenu/index.vue'
-
-export default defineComponent({
-  components: {
-    Layout,
-    HeaderBar,
-    SiderMenu,
-  },
-  setup() {
-    return {}
-  },
-})
-</script>
-
 <style lang="less">
 .AppLayout {
-  height: 100%;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.25s ease;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
+  height: 100vh;
 }
 </style>

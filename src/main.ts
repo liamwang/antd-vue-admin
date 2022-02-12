@@ -1,3 +1,5 @@
+import './styles/global.less'
+
 import { createApp } from 'vue'
 import router from './router'
 import App from './layout/App.vue'
