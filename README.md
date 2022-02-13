@@ -1,26 +1,42 @@
 # Vue 3 + Typescript + Vite
 
+<div align="center">
+
 This template should help get you started developing with Vue 3 and Typescript in Vite.
+
+![](https://user-images.githubusercontent.com/5000396/153741278-19110e30-8629-4e9b-9f60-fd29bed1f826.png)
+
+</div>
+
+## Features
+
+- [x] :rocket: **State of The Art Development**: Newest development stack of Vue/Vite/AntDesignVue
+- [x] :bulb: **TypeScript**: A language for application-scale JavaScript
+- [x] :gem: **Neat Design**: Follow [Ant Design specification](http://ant.design/)
+- [x] :gear: **Best Practices**: Solid workflow to make your code healthy
+- [x] :1234: **Mock development**: Easy to use mock development solution
+- [ ] :scroll: **Blocks**: Build page with block template
+- [ ] :triangular_ruler: **Common Templates**: Typical templates for enterprise applications
+- [ ] :art: **Theming**: Customizable theme with simple config
+- [ ] :globe_with_meridians: **International**: Built-in i18n solution
+- [ ] :white_check_mark: **UI Test**: Fly safely with unit and e2e tests
 
 ## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur). Make sure to enable `vetur.experimental.templateInterpolationService` in settings!
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar).
 
-### If Using `<script setup>`
+## Browsers support
 
-[`<script setup>`](https://github.com/vuejs/rfcs/pull/227) is a feature that is currently in RFC stage. To get proper IDE support for the syntax, use [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) instead of Vetur (and disable Vetur).
+Modern browsers and IE11.
 
-## Type Support For `.vue` Imports in TS
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| IE11, Edge                                                                                                                                                                                                      | last 2 versions                                                                                                                                                                                                   | last 2 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                               | last 2 versions                                                                                                                                                                                           |
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can use the following:
+## Contributing
 
-### If Using Volar
+Any type of contribution is welcome, here are some examples of how you may contribute to this project:
 
-Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
-
-### If Using Vetur
-
-1. Install and add `@vuedx/typescript-plugin-vue` to the [plugins section](https://www.typescriptlang.org/tsconfig#plugins) in `tsconfig.json`
-2. Delete `src/shims-vue.d.ts` as it is no longer needed to provide module info to Typescript
-3. Open `src/main.ts` in VSCode
-4. Open the VSCode command palette 5. Search and run "Select TypeScript version" -> "Use workspace version"
+- Use Ant Design Pro in your daily work.
+- Submit [issues](https://github.com/liamwang/antd-vue-admin/issues) to report bugs or ask questions.
+- Propose [pull requests](https://github.com/liamwang/antd-vue-admin/pulls) to improve our code.
