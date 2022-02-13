@@ -1,5 +1,5 @@
 <template>
   <span class="nav-item">
-    <slot />
+    <slot></slot>
   </span>
 </template>

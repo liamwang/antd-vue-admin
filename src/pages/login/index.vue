@@ -1,6 +1,6 @@
 <script lang="ts" setup>
   import { reactive } from 'vue'
-  import { Form, Input, Checkbox, Button } from 'ant-design-vue'
+  import { Form, Input, Button } from 'ant-design-vue'
   import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
   import Footer from '@/layout/Footer.vue'
   import useAuth from '@/hooks/useAuth'

@@ -13,8 +13,8 @@
     "serve": "vite preview",
     "prepare": "husky install",
     "format": "prettier --write src",
-    "lint": "tsc --noEmit && eslint --ext .ts,.tsx ./src",
-    "lint:fix": "tsc --noEmit && eslint --fix --cache --ext .ts,.tsx ./src",
+    "lint": "tsc --noEmit && eslint --cache --ext .vue,.ts,.tsx ./src",
+    "lint:fix": "tsc --noEmit && eslint --fix --cache --ext .vue,.ts,.tsx ./src",
     "lint:lint-staged": "lint-staged",
     "clean": "rimraf dist node_modules pnpm-lock.yaml yarn.lock package.lock.json .eslintcache",
     "clean:cache": "rimraf node_modules/.cache/ node_modules/.vite .eslintcache"
@@ -22,6 +22,10 @@
   "lint-staged": {
     "*.{ts,tsx}": "npm run lint",
     "**/*.{tsx,ts,less,json}": [
+      "prettier --write"
+    ],
+    "*.vue": [
+      "eslint --fix",
       "prettier --write"
     ]
   },
