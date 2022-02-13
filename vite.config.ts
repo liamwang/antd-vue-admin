@@ -34,7 +34,7 @@ export default defineConfig(({ mode }) => {
       preprocessorOptions: {
         less: {
           javascriptEnabled: true,
-          additionalData: `@import "./src/styles/variables";`,
+          // additionalData: `@import "./src/styles/variables";`,
         },
       },
     },
@@ -45,6 +45,12 @@ export default defineConfig(({ mode }) => {
         { find: '$/', replacement: resolve(__dirname, '.') + '/' },
         { find: '@/', replacement: resolve(__dirname, 'src') + '/' },
       ],
+    },
+    build: {
+      chunkSizeWarningLimit: 1000,
+    },
+    optimizeDeps: {
+      include: ['ant-design-vue/es/locale/zh_CN'],
     },
   }
 })

@@ -1,6 +1,7 @@
 import { Breadcrumb } from 'ant-design-vue'
 import menu from '@/config/menu'
 import { useRoute, RouterLink } from 'vue-router'
+import { homePath } from './../config/const'
 
 const getPathNameMap = (menuItems: MenuItem[]) => {
   let result: Record<string, string> = {}
@@ -28,8 +29,8 @@ const PagePath = () => {
   })
 
   breadcrumbItems = [
-    <Breadcrumb.Item key="/">
-      <RouterLink to="/">首页</RouterLink>
+    <Breadcrumb.Item key={homePath}>
+      <RouterLink to={homePath}>首页</RouterLink>
     </Breadcrumb.Item>,
   ].concat(breadcrumbItems)
 

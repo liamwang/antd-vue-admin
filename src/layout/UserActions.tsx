@@ -2,6 +2,7 @@ import { Menu, Dropdown } from 'ant-design-vue'
 import { KeyOutlined, PoweroffOutlined } from '@ant-design/icons-vue'
 import useAuth from '@/hooks/useAuth'
 import Notification from './Notification'
+import NavItem from './NavItem.vue'
 
 export default () => {
   const { auth, logout } = useAuth()
@@ -28,13 +29,13 @@ export default () => {
     <>
       <Notification />
       <Dropdown overlay={menu} placement="bottomRight">
-        <span class="app-layout-action">
+        <NavItem>
           <img
             style={{ width: '24px', height: '24px' }}
             src="/assets/avatar.png"
           />
           <span style={{ marginLeft: '10px' }}>{auth?.userInfo?.name}</span>
-        </span>
+        </NavItem>
       </Dropdown>
     </>
   )

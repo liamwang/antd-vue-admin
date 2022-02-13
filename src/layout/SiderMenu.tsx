@@ -1,7 +1,7 @@
-import { ref, watchEffect } from 'vue'
+import { nextTick, ref, unref, watch, watchEffect } from 'vue'
 import { Menu, Layout } from 'ant-design-vue'
 import type { MenuTheme } from 'ant-design-vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import menu from '@/config/menu'
 import Logo from './Logo.vue'
 
@@ -12,15 +12,23 @@ interface SiderMenuProps {
 
 export default (props: SiderMenuProps) => {
   const openKeys = ref<string[]>([])
-  const selectedKey = ref('')
+  const selectedKey = ref('/')
 
   const router = useRouter()
+  const route = useRoute()
 
   const subMenuKeys = getSubMenuKeys(menu)
 
+  let isRouteChangeFromMenu = false
+
   watchEffect(() => {
-    selectedKey.value = router.currentRoute.value.path
-    !props.collapsed && setOpenKeysByPath(selectedKey.value)
+    nextTick(() => {
+      if (!isRouteChangeFromMenu && selectedKey.value != route.path) {
+        selectedKey.value = route.path
+        !props.collapsed && setOpenKeysByPath(selectedKey.value)
+      }
+      isRouteChangeFromMenu = false
+    })
   })
 
   function setOpenKeysByPath(path: string) {
@@ -44,6 +52,7 @@ export default (props: SiderMenuProps) => {
   }
 
   function onSelect({ key }: { key: string }) {
+    isRouteChangeFromMenu = true
     selectedKey.value = key
     router.push(key)
   }
@@ -80,7 +89,7 @@ export default (props: SiderMenuProps) => {
         openKeys={openKeys.value}
         // @ts-ignore
         onOpenChange={onOpenChange}
-        selectedKeys={[selectedKey]}
+        selectedKeys={[selectedKey.value]}
         // @ts-ignore
         onSelect={onSelect}
       >

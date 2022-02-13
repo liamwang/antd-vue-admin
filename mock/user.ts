@@ -4,6 +4,7 @@ export default [
   {
     url: '/api/token',
     method: 'post',
+    timeout: 2000,
     response: (req: any) => {
       const { username, password } = req.body
       if (
