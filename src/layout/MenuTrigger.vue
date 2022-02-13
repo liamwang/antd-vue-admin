@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
-import NavItem from './NavItem.vue'
+  import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
+  import NavItem from './NavItem.vue'
 
-defineProps<{
-  collapsed: boolean
-}>()
+  defineProps<{
+    collapsed: boolean
+  }>()
 
-const emit = defineEmits<{
-  (e: 'update:collapsed', v: boolean): void
-}>()
+  const emit = defineEmits<{
+    (e: 'update:collapsed', v: boolean): void
+  }>()
 </script>
 
 <template>

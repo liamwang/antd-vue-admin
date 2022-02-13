@@ -46,10 +46,7 @@ class Http implements IHttp {
     return this.container[baseUrl]
   }
 
-  async request<D>(
-    url: string,
-    config: RequestConfig = {}
-  ): Promise<D | undefined> {
+  async request<D>(url: string, config: RequestConfig = {}): Promise<D | undefined> {
     let fullUrl = /^((https?:)|\/)/.test(url) ? url : `${this.baseUrl}/${url}`
     if (config.params && Object.keys(config.params).length > 0) {
       fullUrl += '?' + queryString(config.params)

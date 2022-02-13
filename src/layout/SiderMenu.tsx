@@ -1,4 +1,4 @@
-import { nextTick, ref, unref, watch, watchEffect } from 'vue'
+import { nextTick, ref, watchEffect } from 'vue'
 import { Menu, Layout } from 'ant-design-vue'
 import type { MenuTheme } from 'ant-design-vue'
 import { useRouter, useRoute } from 'vue-router'
@@ -46,9 +46,7 @@ export default (props: SiderMenuProps) => {
 
   function onOpenChange(keys: string[]) {
     const lastOpenKey = keys.find((k) => openKeys.value.indexOf(k) === -1)
-    openKeys.value = lastOpenKey
-      ? subMenuKeys.filter((x) => lastOpenKey.startsWith(x))
-      : keys
+    openKeys.value = lastOpenKey ? subMenuKeys.filter((x) => lastOpenKey.startsWith(x)) : keys
   }
 
   function onSelect({ key }: { key: string }) {

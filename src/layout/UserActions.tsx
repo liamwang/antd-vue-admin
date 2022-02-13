@@ -30,11 +30,8 @@ export default () => {
       <Notification />
       <Dropdown overlay={menu} placement="bottomRight">
         <NavItem>
-          <img
-            style={{ width: '24px', height: '24px' }}
-            src="/assets/avatar.png"
-          />
-          <span style={{ marginLeft: '10px' }}>{auth?.userInfo?.name}</span>
+          <img style="width: 24px; height: 24px" src="/assets/avatar.png" />
+          <span style="margin-left: 10px">{auth?.userInfo?.name}</span>
         </NavItem>
       </Dropdown>
     </>

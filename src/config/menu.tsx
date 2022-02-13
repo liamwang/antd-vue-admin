@@ -1,8 +1,4 @@
-import {
-  HomeOutlined,
-  CrownOutlined,
-  TabletOutlined,
-} from '@ant-design/icons-vue'
+import { HomeOutlined, CrownOutlined, TabletOutlined } from '@ant-design/icons-vue'
 import { homePath } from './const'
 
 const menu: MenuItem[] = [

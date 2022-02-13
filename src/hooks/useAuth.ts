@@ -1,10 +1,11 @@
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { clear, getAuthData, setAuthData } from '@/store/local'
 import { homePath, loginPath } from '@/config/const'
 import { userService } from '@/service'
 
 export default () => {
   const router = useRouter()
+  const route = useRoute()
   const auth = getAuthData()
 
   const login = async (form: LoginForm) => {
@@ -20,10 +21,7 @@ export default () => {
 
   const validate = () => {
     const authenticated = auth && auth.expiresAt <= Date.now()
-    if (
-      !authenticated &&
-      !router.currentRoute.value.path.startsWith(loginPath)
-    ) {
+    if (!authenticated && !route.path.startsWith(loginPath)) {
       logout()
     }
   }
