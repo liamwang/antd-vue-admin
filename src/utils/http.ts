@@ -74,7 +74,7 @@ class Http implements IHttp {
       if (err instanceof RequestError) {
         err.handleErrorDefault(config.silent)
       } else {
-        Message.error(`请求出错`)
+        Message.error(`网络异常`)
       }
       throw err
     }

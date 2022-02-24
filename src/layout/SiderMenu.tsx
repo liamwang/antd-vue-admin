@@ -1,9 +1,10 @@
 import { nextTick, ref, watchEffect } from 'vue'
-import { Menu, Layout } from 'ant-design-vue'
+import { Layout, Menu } from 'ant-design-vue'
 import type { MenuTheme } from 'ant-design-vue'
-import { useRouter, useRoute } from 'vue-router'
-import menu from '@/config/menu'
+import { useRoute, useRouter } from 'vue-router'
 import Logo from './Logo.vue'
+import useAuth from '@/hooks/useAuth'
+import menu from '@/config/menu'
 
 interface SiderMenuProps {
   theme: MenuTheme
@@ -16,6 +17,7 @@ export default (props: SiderMenuProps) => {
 
   const router = useRouter()
   const route = useRoute()
+  const { auth } = useAuth()
 
   const subMenuKeys = getSubMenuKeys(menu)
 
@@ -23,7 +25,7 @@ export default (props: SiderMenuProps) => {
 
   watchEffect(() => {
     nextTick(() => {
-      if (!isRouteChangeFromMenu && selectedKey.value != route.path) {
+      if (!isRouteChangeFromMenu && selectedKey.value !== route.path) {
         selectedKey.value = route.path
         !props.collapsed && setOpenKeysByPath(selectedKey.value)
       }
@@ -45,7 +47,7 @@ export default (props: SiderMenuProps) => {
   }
 
   function onOpenChange(keys: string[]) {
-    const lastOpenKey = keys.find((k) => openKeys.value.indexOf(k) === -1)
+    const lastOpenKey = keys.find((k) => !openKeys.value.includes(k))
     openKeys.value = lastOpenKey ? subMenuKeys.filter((x) => lastOpenKey.startsWith(x)) : keys
   }
 
@@ -56,7 +58,11 @@ export default (props: SiderMenuProps) => {
   }
 
   function renderMenu(items: MenuItem[]) {
-    const menuItems = items.filter((item) => !item.hide)
+    const userRoles = auth?.userInfo.roles || []
+    const menuItems = items.filter(
+      (i) =>
+        !i.hidden && (!i.roles || !i.roles.length || i.roles.some((r) => userRoles.includes(r))),
+    )
     return menuItems.map((item) => {
       return item.children ? (
         <Menu.SubMenu key={item.path} title={item.name} icon={item.icon}>
@@ -85,10 +91,10 @@ export default (props: SiderMenuProps) => {
         theme={props.theme}
         inlineIndent={16}
         openKeys={openKeys.value}
-        // @ts-ignore
+        // @ts-expect-error the argument must be a string array
         onOpenChange={onOpenChange}
         selectedKeys={[selectedKey.value]}
-        // @ts-ignore
+        // @ts-expect-error the argument must be a string array
         onSelect={onSelect}
       >
         {renderMenu(menu)}

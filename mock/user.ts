@@ -7,12 +7,7 @@ export default [
     timeout: 2000,
     response: (req: any) => {
       const { username, password } = req.body
-      if (
-        !username ||
-        !password ||
-        username.toLowerCase() !== 'admin' ||
-        password != 'admin'
-      ) {
+      if (!username || !password || username.toLowerCase() !== 'admin' || password != 'admin') {
         return {
           code: 400,
           message: '用户名或密码错误',

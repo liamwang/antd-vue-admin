@@ -1,15 +1,13 @@
 import { Breadcrumb } from 'ant-design-vue'
-import menu from '@/config/menu'
-import { useRoute, RouterLink } from 'vue-router'
+import { RouterLink, useRoute } from 'vue-router'
 import { homePath } from './../config/const'
+import menu from '@/config/menu'
 
 const getPathNameMap = (menuItems: MenuItem[]) => {
   let result: Record<string, string> = {}
   for (const item of menuItems) {
     result[item.path] = item.name
-    if (item.children) {
-      result = { ...result, ...getPathNameMap(item.children) }
-    }
+    if (item.children) result = { ...result, ...getPathNameMap(item.children) }
   }
   return result
 }

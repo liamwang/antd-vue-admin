@@ -1,7 +1,12 @@
-import { useRouter, useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { clear, getAuthData, setAuthData } from '@/store/local'
 import { homePath, loginPath } from '@/config/const'
 import { userService } from '@/service'
+
+interface LoginForm {
+  username: string
+  password: string
+}
 
 export default () => {
   const router = useRouter()
@@ -21,9 +26,7 @@ export default () => {
 
   const validate = () => {
     const authenticated = auth && auth.expiresAt <= Date.now()
-    if (!authenticated && !route.path.startsWith(loginPath)) {
-      logout()
-    }
+    if (!authenticated && !route.path.startsWith(loginPath)) logout()
   }
 
   return {

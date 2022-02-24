@@ -1,16 +1,14 @@
-import { Menu, Dropdown } from 'ant-design-vue'
+import { Dropdown, Menu } from 'ant-design-vue'
 import { KeyOutlined, PoweroffOutlined } from '@ant-design/icons-vue'
-import useAuth from '@/hooks/useAuth'
 import Notification from './Notification'
 import NavItem from './NavItem.vue'
+import useAuth from '@/hooks/useAuth'
 
 export default () => {
   const { auth, logout } = useAuth()
 
   const handleMenuClick = ({ key }: any) => {
-    if (key === 'logout') {
-      logout()
-    }
+    if (key === 'logout') logout()
   }
 
   const menu = (

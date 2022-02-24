@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-  import { onBeforeMount } from 'vue'
   import { ConfigProvider } from 'ant-design-vue'
   import zhCN from 'ant-design-vue/es/locale/zh_CN'
+  import { onBeforeMount } from 'vue'
   import useAuth from '@/hooks/useAuth'
 
   onBeforeMount(() => {
@@ -12,7 +12,11 @@
 
 <template>
   <ConfigProvider :locale="zhCN">
-    <RouterView />
+    <RouterView v-slot="{ Component, route }">
+      <Transition name="fade" mode="out-in" appear>
+        <component :is="Component" :key="route.meta.outerKey" />
+      </Transition>
+    </RouterView>
   </ConfigProvider>
 </template>
 

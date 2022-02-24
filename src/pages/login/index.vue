@@ -1,10 +1,10 @@
 <script lang="ts" setup>
+  import { LockOutlined, UserOutlined } from '@ant-design/icons-vue'
+  import { Button, Form, Input } from 'ant-design-vue'
   import { reactive } from 'vue'
-  import { Form, Input, Button } from 'ant-design-vue'
-  import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
   import Footer from '@/layout/Footer.vue'
   import useAuth from '@/hooks/useAuth'
-  import useRequest from '@/hooks/useRequest'
+  import { useAsync } from '@/hooks'
 
   const appName = import.meta.env.VITE_APP_NAME
 
@@ -20,7 +20,7 @@
   }
 
   const { login } = useAuth()
-  const { run, loading } = useRequest()
+  const { run, loading } = useAsync()
 
   const onFinish = (values: any) => {
     run(login(values))
@@ -28,38 +28,40 @@
 </script>
 
 <template>
-  <div class="login-bg"></div>
-  <div class="login">
-    <div class="login-form">
-      <Form :model="form" :rules="rules" @finish="onFinish">
-        <div class="login-header">
-          <div><img src="/logo.svg" /></div>
-          <h1>{{ appName }}</h1>
-          <p>A starting point for new web applications.</p>
-        </div>
-        <Form.Item name="username">
-          <Input v-model:value="form.username" size="large" placeholder="用户名">
-            <template #prefix>
-              <UserOutlined />
-            </template>
-          </Input>
-        </Form.Item>
-        <Form.Item name="password">
-          <Input.Password v-model:value="form.password" size="large" placeholder="密码">
-            <template #prefix>
-              <LockOutlined />
-            </template>
-          </Input.Password>
-        </Form.Item>
-        <!--
-        <Form.Item name="remember">
+  <div>
+    <div class="login-bg"></div>
+    <div class="login">
+      <div class="login-form">
+        <Form :model="form" :rules="rules" @finish="onFinish">
+          <div class="login-header">
+            <div><img src="/logo.svg" /></div>
+            <h1>{{ appName }}</h1>
+            <p></p>
+          </div>
+          <Form.Item name="username">
+            <Input v-model:value="form.username" size="large" placeholder="用户名: Admin">
+              <template #prefix>
+                <UserOutlined />
+              </template>
+            </Input>
+          </Form.Item>
+          <Form.Item name="password">
+            <Input.Password v-model:value="form.password" size="large" placeholder="密码: admin">
+              <template #prefix>
+                <LockOutlined />
+              </template>
+            </Input.Password>
+          </Form.Item>
+          <!--
+        <AForm.Item name="remember">
           <Checkbox v-model:value="form.remember">下次自动登录</Checkbox>
-        </Form.Item>
+        </AForm.Item>
         -->
-        <Button type="primary" size="large" html-type="submit" :loading="loading">登 录</Button>
-      </Form>
+          <Button type="primary" size="large" html-type="submit" :loading="loading"> 登 录 </Button>
+        </Form>
+      </div>
+      <Footer />
     </div>
-    <Footer />
   </div>
 </template>
 
@@ -80,7 +82,7 @@
         background: #fff;
         width: 420px;
         border-radius: 5px;
-        padding: 40px 40px 60px;
+        padding: 40px 40px 50px;
         box-shadow: rgb(0 0 0 / 5%) 0px 0px 5px;
       }
       .ant-btn {
@@ -93,10 +95,10 @@
         color: rgba(0, 0, 0, 0.8);
         font-weight: 600;
         font-size: 33px;
-        margin: 6px 0;
+        margin: 15px 0;
       }
       img {
-        width: 50px;
+        width: 70px;
         margin-right: 10px;
       }
       p {

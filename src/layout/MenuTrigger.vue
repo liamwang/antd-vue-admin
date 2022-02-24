@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
+  import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons-vue'
   import NavItem from './NavItem.vue'
 
   defineProps<{

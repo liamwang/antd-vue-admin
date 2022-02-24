@@ -1,13 +1,7 @@
 import { createApp } from 'vue'
-import router from './router'
 import App from './layout/App.vue'
-
-import { regGlobalComponents } from './comps/global'
+import Router from './layout/Router'
 
 const app = createApp(App)
-
-regGlobalComponents(app)
-
-app.use(router)
-
+app.use(Router)
 app.mount('#app')

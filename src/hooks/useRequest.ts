@@ -1,24 +1,29 @@
-import { ref } from 'vue'
+import { reactive, ref, Ref } from 'vue'
+import type { Target } from './useAsync'
+import useAsync from './useAsync'
 
-const useRequest = () => {
-  const loading = ref(false)
-  const result = ref<any>()
-  const run = async (promise: Promise<any>, map?: (res: any) => any) => {
-    loading.value = true
-    try {
-      let data = await promise
-      if (map) {
-        data = map(data)
-      }
-      result.value = data
-      return result
-    } catch (e) {
-      return new Promise(() => {})
-    } finally {
-      loading.value = false
-    }
+export type Service<TData, TParams extends any[]> = (...args: TParams) => Promise<TData>
+
+export interface Result<TData, TParams extends any[]> {
+  run: (...args: TParams) => Promise<TData>
+  loading: Ref<boolean>
+  params: Ref<TParams>
+  data: Ref<TData>
+}
+
+function useRequest<TData extends object, TParams extends any[]>(
+  service: Service<TData, TParams>,
+  initial: TData,
+  map?: (res: any) => Target<TData>,
+) {
+  const { run: runAsync, loading } = useAsync()
+  const data = reactive(initial)
+  const params = ref()
+  function run(...args: Parameters<typeof service>) {
+    params.value = args
+    return runAsync(service(...args), data, map)
   }
-  return { run, loading, result }
+  return { run, loading, params, data } as Result<TData, TParams>
 }
 
 export default useRequest
