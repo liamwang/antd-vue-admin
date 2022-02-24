@@ -20,6 +20,7 @@ packages
 .eslintcache
 .cache
 .npmrc
+*.tsbuildinfo
 
 # log files
 [Ll]og
