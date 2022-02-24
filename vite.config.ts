@@ -1,35 +1,17 @@
 import { resolve } from 'path'
 import { defineConfig, loadEnv } from 'vite'
+import type { ConfigEnv, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import { viteMockServe } from 'vite-plugin-mock'
-import { createStyleImportPlugin } from 'vite-plugin-style-import'
+import styleImport from './build/styleImport'
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, __dirname) as ImportMetaEnv
   return {
     server: {
-      port: env.VITE_PORT,
+      port: parseInt(env.VITE_PORT),
     },
-    plugins: [
-      vue(),
-      vueJsx(),
-      createStyleImportPlugin({
-        libs: [
-          {
-            libraryName: 'ant-design-vue',
-            esModule: true,
-            resolveStyle: (name) => {
-              return `ant-design-vue/es/${name}/style`
-            },
-          },
-        ],
-      }),
-      viteMockServe({
-        mockPath: 'mock',
-        localEnabled: true,
-      }),
-    ],
+    plugins: [vue(), vueJsx(), styleImport()],
     css: {
       preprocessorOptions: {
         less: {
@@ -40,17 +22,28 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias: [
-        // fix less import by: @import ~
-        // { find: /^~/, replacement: '' },
-        { find: '$/', replacement: resolve(__dirname, '.') + '/' },
-        { find: '@/', replacement: resolve(__dirname, 'src') + '/' },
+        { find: '$/', replacement: `${resolve(__dirname, '.')}/` },
+        { find: '@/', replacement: `${resolve(__dirname, 'src')}/` },
       ],
     },
     build: {
       chunkSizeWarningLimit: 1000,
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            layout: ['./src/layout/Layout.vue'],
+          },
+        },
+      },
     },
     optimizeDeps: {
-      include: ['ant-design-vue/es/locale/zh_CN'],
+      include: ['ant-design-vue', 'ant-design-vue/es', 'ant-design-vue/es/locale/zh_CN'],
     },
   }
 })
