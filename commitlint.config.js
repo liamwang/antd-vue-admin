@@ -15,7 +15,7 @@ module.exports = {
         'feat', // 增加新功能
         'fix', // 修复问题/BUG
         'perf', // 优化/性能提升
-        'style', // 修复问题/BUG
+        'style', // 代码风格相关
         'docs', // 文档/注释
         'test', // 测试相关
         'refactor', // 重构
